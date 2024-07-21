@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      font-size: 1.5rem;
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    form {
+      padding: 20px 0;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 10px;
+      width: 100%;
+      border: none;
+      font-size: 1rem;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .error {
+      color: red;
+      margin-bottom: 15px;
+    }
+    #toggleButton {
+      text-align: center;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #007bff;
+      transition: color 0.3s ease;
+    }
+    #toggleButton:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 id="formTitle">Login</h2>
+    <div class="input">
+      <form id="authForm" action="/log-in" method="POST">
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Email" required />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <button type="submit" id="formButton">Login</button>
+      </form>
+      <form
+        id="signupForm"
+        action="/register"
+        method="POST"
+        style="display: none"
+      >
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Email" required />
+        </div>
+        <div class="form-group" id="usernameField">
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <button type="submit">Signup</button>
+      </form>
+    </div>
+    <div id="toggleButton">New to us? Click here to Signup</div>
+  </div>
+
+  <script>
+    const formTitle = document.getElementById("formTitle");
+    const authForm = document.getElementById("authForm");
+    const signupForm = document.getElementById("signupForm");
+    const usernameField = document.getElementById("usernameField");
+    const formButton = document.getElementById("formButton");
+    const toggleButton = document.getElementById("toggleButton");
+
+    toggleButton.addEventListener("click", () => {
+      if (authForm.style.display === "none") {
+        formTitle.textContent = "Login";
+        authForm.style.display = "block";
+        signupForm.style.display = "none";
+        formButton.textContent = "Login";
+        toggleButton.textContent = "New to us? Click here to Signup";
+      } else {
+        formTitle.textContent = "Signup";
+        authForm.style.display = "none";
+        signupForm.style.display = "block";
+        formButton.textContent = "Signup";
+        toggleButton.textContent =
+          "Already have an account? Click here to Login";
+      }
+    });
+  </script>
+</body>
+</html>

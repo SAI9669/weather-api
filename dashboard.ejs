@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <style>
+       body {
+    background-color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #e0e0e0;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2e5eb7;
+    padding: 20px;
+}
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+nav ul li {
+    margin: 0 10px;
+}
+nav ul li a {
+    color: #E0E0E0;
+    text-decoration: none;
+    font-size: 16px;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #555555;
+    font-size: 16px;
+    background-color: #333333;
+    color: #F5F5F5;
+}
+button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ff0000;
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;
+}
+.weather-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.weather-item {
+    background-color: #1E1E1E;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: #E0E0E0;
+}
+.weather-item p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#About">About</a></li>
+                <li><a href="#Contact">Contact</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="search-container">
+        <form action="/weather" method="get">
+            <input type="text" name="city" id="cityInput" placeholder="Enter city">
+            <button type="submit">Get Weather</button>
+        </form>
+    </div>
+    <% if (weather!==null) { %>
+        <div class="weather-container" id="weatherContainer">
+            <div class="weather-item">
+                <p><strong>City:</strong> <%= weather.name %></p>
+                <p><strong>Temperature:</strong> <%= weather.main.temp %>°C</p>
+                <p><strong>Weather:</strong> <%= weather.weather[0].description %></p>
+                <p><strong>Humidity:</strong> <%= weather.main.humidity %>%</p>
+                <p><strong>Wind Speed:</strong> <%= weather.wind.speed %> m/s</p>
+            </div>
+        </div>
+    <% } else if (typeof weather !== 'undefined') { %>
+        <div class="weather-container" id="weatherContainer">
+            <div class="weather-item">No weather data available.</div>
+        </div>
+    <% } %>
+</body>
+</html>
